@@ -30,8 +30,7 @@ folderName = input("Enter Dataset Folder Name")
 testDatasetC = getCombinedDataset('countix/countix_test.csv',
                                    folderName+'testvids',
                                    'test')
-testDatasetS = SyntheticDataset(folderName+'synthvids', 'train*', 'mp4', 2000,
-                                   frame_per_vid=frame_per_vid)
+testDatasetS = SyntheticDataset(folderName+'synthvids', 'train*', 'mp4', 2000)
 
 testList = [testDatasetC, testDatasetS]
 random.shuffle(testList)
@@ -46,8 +45,7 @@ trainDatasetC = getCombinedDataset('countix/countix_train.csv',
 #                                   frame_per_vid=frame_per_vid)
 #trainDatasetS2 = SyntheticDataset('/home/saurabh/Downloads', '1917', 'mkv', 500,
 #                                   frame_per_vid=frame_per_vid)
-trainDatasetS3 = SyntheticDataset(folderName+'synthvids', 'train*', 'mp4', 3000,
-                                   frame_per_vid=frame_per_vid)
+trainDatasetS3 = SyntheticDataset(folderName+'synthvids', 'train*', 'mp4', 3000)
 #trainDatasetS4 = SyntheticDataset('/home/saurabh/Downloads', 'HP6', 'mkv', 500,
 #                                   frame_per_vid=frame_per_vid)
 trainDatasetB = BlenderDataset(folderName+'blendervids', 'videos', 'annotations', frame_per_vid)
