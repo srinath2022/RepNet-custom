@@ -29,7 +29,7 @@ folderName = input("Enter Dataset Folder Name")
 
 testDatasetC = getCombinedDataset('countix/countix_test.csv',
                                    folderName+'testvids',
-                                   'test')
+                                   'test', folderName)
 testDatasetS = SyntheticDataset(folderName+'synthvids', 'train*', 'mp4', 2000)
 
 testList = [testDatasetC, testDatasetS]
@@ -40,7 +40,7 @@ testDataset = ConcatDataset(testList)
 
 trainDatasetC = getCombinedDataset('countix/countix_train.csv',
                                    folderName+'trainvids',
-                                   'train')
+                                   'train', folderName)
 #trainDatasetS1 = SyntheticDataset('/home/saurabh/Downloads/HP72','HP72', 'mp4', 500,
 #                                   frame_per_vid=frame_per_vid)
 #trainDatasetS2 = SyntheticDataset('/home/saurabh/Downloads', '1917', 'mkv', 500,

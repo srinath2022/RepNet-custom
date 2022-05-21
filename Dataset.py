@@ -16,9 +16,10 @@ from torch.utils.data import Dataset, DataLoader, ConcatDataset
 """Creates one sequence from each video"""
 class miniDataset(Dataset):
     
-    def __init__(self, df, path_to_video):
+    def __init__(self, df, path_to_video, synthPath):
         
         self.path = path_to_video
+        self.synthPath = synthPath
         self.df = df.reset_index()
         self.count = self.df.loc[0, 'count']
 
@@ -122,7 +123,7 @@ class dataset_with_indices(Dataset):
         return len(self.ds)
 
 
-def getCombinedDataset(dfPath, videoDir, videoPrefix):
+def getCombinedDataset(dfPath, videoDir, videoPrefix, synthPath):
     df = pd.read_csv(dfPath)
     path_prefix = videoDir + '/' + videoPrefix
     
@@ -139,7 +140,7 @@ def getCombinedDataset(dfPath, videoDir, videoPrefix):
     for i in range(0, len(df)):
         dfi = df.iloc[[i]]
         path_to_video = path_prefix + str(dfi.index.item()) +'.mp4'
-        miniDatasetList.append(miniDataset(dfi, path_to_video))
+        miniDatasetList.append(miniDataset(dfi, path_to_video, synthPath))
         
     megaDataset = ConcatDataset(miniDatasetList)
     return megaDataset
