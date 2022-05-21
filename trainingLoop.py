@@ -24,10 +24,13 @@ print("Cuda availability : " + str(device))
 frame_per_vid = 64
 multiple = False
 
+folderName = 'content/DatasetFiles03/DatasetFiles/'
+folderName = input("Enter Dataset Folder Name")
+
 testDatasetC = getCombinedDataset('countix/countix_test.csv',
-                                   'testvids',
+                                   folderName+'testvids',
                                    'test')
-testDatasetS = SyntheticDataset('synthvids', 'train*', 'mp4', 2000,
+testDatasetS = SyntheticDataset(folderName+'synthvids', 'train*', 'mp4', 2000,
                                    frame_per_vid=frame_per_vid)
 
 testList = [testDatasetC, testDatasetS]
@@ -37,17 +40,17 @@ testDataset = ConcatDataset(testList)
 
 
 trainDatasetC = getCombinedDataset('countix/countix_train.csv',
-                                   'trainvids',
+                                   folderName+'trainvids',
                                    'train')
 #trainDatasetS1 = SyntheticDataset('/home/saurabh/Downloads/HP72','HP72', 'mp4', 500,
 #                                   frame_per_vid=frame_per_vid)
 #trainDatasetS2 = SyntheticDataset('/home/saurabh/Downloads', '1917', 'mkv', 500,
 #                                   frame_per_vid=frame_per_vid)
-trainDatasetS3 = SyntheticDataset('synthvids', 'train*', 'mp4', 3000,
+trainDatasetS3 = SyntheticDataset(folderName+'synthvids', 'train*', 'mp4', 3000,
                                    frame_per_vid=frame_per_vid)
 #trainDatasetS4 = SyntheticDataset('/home/saurabh/Downloads', 'HP6', 'mkv', 500,
 #                                   frame_per_vid=frame_per_vid)
-trainDatasetB = BlenderDataset('blendervids', 'videos', 'annotations', frame_per_vid)
+trainDatasetB = BlenderDataset(folderName+'blendervids', 'videos', 'annotations', frame_per_vid)
 
 trainList = [trainDatasetC, trainDatasetS3] #, trainDatasetB]
 random.shuffle(trainList)
